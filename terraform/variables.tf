@@ -64,6 +64,12 @@ variable "ami_id" {
   default     = "ami-007855ac798b5175e"
 }
 
+variable "ssh_user" {
+  description = "Default user on instance"
+  type        = string
+  default     = "ubuntu"
+}
+
 variable "private_key_path" {
   description = "Path to private key"
   type        = string
