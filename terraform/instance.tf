@@ -14,7 +14,7 @@ resource "aws_instance" "test-instance" {
             type = "ssh"
             user = var.ssh_user
             private_key = file(var.private_key_path)
-            host = aws_instance.test-instance.public_ip
+            host = self.public_ip
         }
     }
     
