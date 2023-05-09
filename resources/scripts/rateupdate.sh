@@ -15,4 +15,4 @@ bestbuybank=$(cat /tmp/rates/index.html | grep -B 6 $bestbuy | grep -o '^<img al
 # echo $bestsellbank
 # echo $bestbuybank
 
-echo "<h1> Best sell rate is $bestsell to bank $bestsellbank and best buy rate is $bestbuy from bank $bestbuybank </h1>" > /home/ubuntu/resources/rate-website/source/index.html
+echo "<meta charset="utf-8">\n<h1> Best sell rate is $bestsell to bank $bestsellbank and best buy rate is $bestbuy from bank $bestbuybank </h1>" > /var/www/rate-website/index.html

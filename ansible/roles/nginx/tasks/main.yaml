@@ -8,6 +8,19 @@
     state: started
     name: nginx
     enabled: yes
+
+- name: copy the index.html
+  copy:
+    src: /home/ubuntu/resources/rate-website/source/index.html
+    dest: /var/www/rate-website/
+    remote_src: true
+- name: change ownership and file permissions for index.html
+  file:
+    dest: /var/www/rate-website/
+    owner: root
+    group: root
+    mode: u=rwX,g=rX,o=rX
+    recurse: yes
 - name: copy the nginx config file and restart nginx
   copy:
     src: /home/ubuntu/resources/rate-website/rate-website.cfg
