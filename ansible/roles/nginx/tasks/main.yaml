@@ -7,3 +7,18 @@
   systemd:
     state: started
     name: nginx
+    enabled: yes
+- name: copy the nginx config file and restart nginx
+  copy:
+    src: /home/ubuntu/resources/rate-website/rate-website.cfg
+    dest: /etc/nginx/sites-available/
+    remote_src: true
+- name: create symlink
+  file:
+    src: /etc/nginx/sites-available/rate-website.cfg
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
