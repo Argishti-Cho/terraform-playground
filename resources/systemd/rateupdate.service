@@ -1,0 +1,8 @@
+[Unit]
+Description=Update AMD/USD rate 
+
+[Service]
+ExecStart=/bin/bash /opt/rateupdate.sh
+
+[Install]
+WantedBy=multi-user.target

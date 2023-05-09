@@ -21,8 +21,28 @@ resource "aws_instance" "test-instance" {
     provisioner "local-exec" {
         command = "ssh-keyscan ${aws_instance.test-instance.public_ip} >> ~/.ssh/known_hosts"
     }
+
+    provisioner "local-exec" {
+        command = "scp -r -i ${var.private_key_path} ../resources/* ${var.ssh_user}@${aws_instance.test-instance.public_ip}:~/resources/"
+    }
+
+    provisioner "remote-exec" {
+        inline = ["sudo cp ~/resources/systemd/* /etc/systemd/system && sudo cp ~/resources/scripts/* /opt/"]
+
+        connection {
+            type = "ssh"
+            user = var.ssh_user
+            private_key = file(var.private_key_path)
+            host = self.public_ip
+        }
+    }
+
     provisioner "local-exec" {
         command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key_path} ../ansible/nginx.yaml"    
+    }
+
+    provisioner "local-exec" {
+        command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key_path} ../ansible/service.yaml"    
     }
 }
 

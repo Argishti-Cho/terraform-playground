@@ -1,0 +1,20 @@
+---
+- name: rateupdate Service enable
+  systemd:
+    name: rateupdate.service
+    state: enabled
+
+- name: rateupdate Timer enable
+  systemd:
+    name: rateupdate.timer
+    state: enabled
+
+- name: rateupdate Service enable
+  systemd:
+    name: rateupdate.service
+    state: started
+
+- name: rateupdate Timer enable
+  systemd:
+    name: rateupdate.timer
+    state: started
