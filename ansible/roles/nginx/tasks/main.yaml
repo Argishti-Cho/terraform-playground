@@ -8,7 +8,6 @@
     state: started
     name: nginx
     enabled: yes
-
 - name: copy the index.html
   copy:
     src: /home/ubuntu/resources/rate-website/source/index.html
