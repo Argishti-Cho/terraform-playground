@@ -15,5 +15,4 @@ bestbuybank=$(cat /tmp/rates/index.html | grep -B 6 $bestbuy | grep -o '^<img al
 # echo $bestsellbank
 # echo $bestbuybank
 
-echo "<meta charset="utf-8"><h1> Best sell rate is ֏$bestsell to bank $bestsellbank and best buy rate is ֏$bestbuy from bank $bestbuybank </h1>" > /var/www/rate-website/index.html
-echo "as of $(date)" >> /var/www/rate-website/index.html
+echo "<meta charset="utf-8"><h1>Best sell rate: ֏$bestsell to $bestsellbank</br>Best buy rate: ֏$bestbuy from $bestbuybank</h1><body><p>as of $(date)</p></body>" > /var/www/rate-website/index.html
