@@ -1,10 +1,10 @@
 ---
-- name: copy the script file
+- name: Copy script file
   copy:
     src: script/
     dest: /opt/
 
-- name: copy service files
+- name: Copy service files
   copy:
     src: service/
     dest: /etc/systemd/system/

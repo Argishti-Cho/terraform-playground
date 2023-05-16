@@ -1,5 +1,5 @@
 ---
-- name: Make sure nginx is the latest version
+- name: Make sure latest version of nginx is installed
   apt:
     name: nginx
     state: latest
@@ -10,25 +10,25 @@
     name: nginx
     enabled: yes
 
-- name: create website folder 
+- name: Create website folder 
   file:
     path: /var/www/rate-website/
     state: directory
     mode: '0755'
     recurse: yes
 
-- name: create the index.html
+- name: Create index.html
   file:
     path: /var/www/rate-website/index.html
     state: touch
     mode: u=rw,g=r,o=r
 
-- name: copy the nginx config file
+- name: Copy nginx config file
   copy:
     src: config/
     dest: /etc/nginx/sites-available/
 
-- name: create symlink
+- name: Create symlink
   file:
     src: /etc/nginx/sites-available/rate-website.cfg
     dest: /etc/nginx/sites-enabled/default
