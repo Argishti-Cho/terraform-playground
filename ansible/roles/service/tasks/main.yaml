@@ -1,4 +1,14 @@
 ---
+- name: copy the script file
+  copy:
+    src: script/
+    dest: /opt/
+
+- name: copy service files
+  copy:
+    src: service/
+    dest: /etc/systemd/system/
+
 - name: rateupdate Service enable
   systemd:
     name: rateupdate.service

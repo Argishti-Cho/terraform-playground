@@ -1,0 +1,16 @@
+---
+- name: Install nginx
+  hosts: all
+  remote_user: ubuntu
+  become: true
+
+  roles:
+  - nginx
+
+- name: Enable service
+  hosts: all
+  remote_user: ubuntu
+  become: true
+
+  roles:
+  - service

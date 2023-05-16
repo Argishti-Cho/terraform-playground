@@ -3,34 +3,38 @@
   apt:
     name: nginx
     state: latest
+
 - name: Make sure nginx is running
   systemd:
     state: started
     name: nginx
     enabled: yes
-- name: copy the index.html
-  copy:
-    src: /home/ubuntu/resources/rate-website/source/index.html
-    dest: /var/www/rate-website/
-    remote_src: true
-- name: change ownership and file permissions for index.html
+
+- name: create website folder 
   file:
-    dest: /var/www/rate-website/
-    owner: root
-    group: root
-    mode: u=rwX,g=rX,o=rX
+    path: /var/www/rate-website/
+    state: directory
+    mode: '0755'
     recurse: yes
-- name: copy the nginx config file and restart nginx
+
+- name: create the index.html
+  file:
+    path: /var/www/rate-website/index.html
+    state: touch
+    mode: u=rw,g=r,o=r
+
+- name: copy the nginx config file
   copy:
-    src: /home/ubuntu/resources/rate-website/rate-website.cfg
+    src: config/
     dest: /etc/nginx/sites-available/
-    remote_src: true
+
 - name: create symlink
   file:
     src: /etc/nginx/sites-available/rate-website.cfg
     dest: /etc/nginx/sites-enabled/default
     state: link
-- name: restart nginx
-  service:
+
+- name: Restart nginx
+  systemd:
     name: nginx
     state: restarted

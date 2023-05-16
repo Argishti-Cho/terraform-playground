@@ -1,8 +1,0 @@
----
-- name: Enable service
-  hosts: all
-  remote_user: ubuntu
-  become: yes
-
-  roles:
-  - service
