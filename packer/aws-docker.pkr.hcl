@@ -1,3 +1,7 @@
+name: packer
+env:
+    PRODUCT_VERSION: "latest"
+
 packer {
     required_plugins {
         amazon = {
