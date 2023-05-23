@@ -23,6 +23,6 @@ build {
   ]
 
   provisioner "ansible" {
-    playbook_file = "packer/provisioners/ansible/docker.yaml"
+    playbook_file = "packer/provisioners/ansible/docker.yml"
   }
 }
