@@ -13,7 +13,7 @@ source "amazon-ebs" "ubuntu-lts" {
   ssh_username   = "ubuntu"
   ssh_agent_auth = false
 
-  ami_name    = "ubuntu-docker_{{timestamp}}"
+  ami_name    = "ubuntu-docker-{{timestamp}}"
   ami_regions = ["us-east-1"]
 }
 

@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Packer
 
 on:
   push:
@@ -23,5 +23,5 @@ jobs:
       - name: Packer Init
         run: packer init packer/
 
-      - name: Packer Build - Branches
+      - name: Packer Build
         run: packer build packer/
