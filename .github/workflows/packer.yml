@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: us-east-1
 
       - name: Packer Init
-        run: packer init ../../packer/
+        run: packer init .
 
       - name: Packer Build - Branches
-        run: packer ../../packer/
+        run: packer build .
