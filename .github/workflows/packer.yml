@@ -21,7 +21,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Packer Init
-        run: packer init ../../packer/ .
+        run: packer init ../../packer/
 
       - name: Packer Build - Branches
-        run: packer ../../packer/ .
+        run: packer ../../packer/
