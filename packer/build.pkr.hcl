@@ -18,7 +18,9 @@ source "amazon-ebs" "ubuntu-lts" {
 }
 
 build {
-  sources = source.amazon-ebs.ubuntu-lts
+  sources = [
+    "source.amazon-ebs.ubuntu-lts",
+  ]
 
   provisioner "ansible" {
     playbook_file = "packer/provisioners/ansible/docker.yaml"
