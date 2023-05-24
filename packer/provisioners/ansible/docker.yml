@@ -1,6 +1,8 @@
 ---
 - name: Install docker
-  hosts: all
+  hosts: default
+  remote_user: ubuntu
+  become: true
 
   roles:
   - docker
