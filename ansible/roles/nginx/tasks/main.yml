@@ -1,11 +1,11 @@
 ---
 - name: Transfer Dockerfile to remote host
   copy:
-    src: docker/
-    dest: ~/
+    src: ../files/docker/
+    dest: /home/ubuntu/
 
 - name: Build Docker image on remote host
-  command: docker build -t nginxcontainer ~/dockerfile
+  command: docker build -t nginxcontainer /home/ubuntu/dockerfile
 
 - name: Run Docker container on remote host
   command: docker run -d -p 80:80 -v ~/rate-website/:/usr/share/nginx/html/ nginxcontainer
