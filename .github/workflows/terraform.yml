@@ -67,6 +67,6 @@ jobs:
 
       - name: Run Ansible Playbook
         run:
-          "ansible-playbook -i ${{ steps.instance_ip.outputs.ip }} --private-key $TF_VAR_private_key ansible/playbook.yaml"
+          "ansible-playbook -i ${{ steps.instance_ip.outputs.ip }} --private-key $private_key ansible/playbook.yaml"
         env:
           TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}
