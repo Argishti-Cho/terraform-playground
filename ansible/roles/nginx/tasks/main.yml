@@ -9,14 +9,14 @@
     path: /home/ubuntu/rate-website/index.html
     state: touch
 
-- name: Transfer custom cinfig to remote host
+- name: Transfer custom config to remote host
   copy:
-    src: /config/
+    src: config/
     dest: /home/ubuntu/rate-website/config/
 
 - name: Transfer Dockerfile to remote host
   copy:
-    src: /docker/
+    src: docker/
     dest: /home/ubuntu/
 
 - name: Build Docker image on remote host
