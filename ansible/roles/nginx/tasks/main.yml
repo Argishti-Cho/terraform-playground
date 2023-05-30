@@ -1,40 +1,11 @@
 ---
-- name: Make sure latest version of nginx is installed
-  apt:
-    name: nginx
-    state: latest
-
-- name: Make sure nginx is running
-  systemd:
-    state: started
-    name: nginx
-    enabled: yes
-
-- name: Create website folder 
-  file:
-    path: /var/www/rate-website/
-    state: directory
-    mode: '0755'
-    recurse: yes
-
-- name: Create index.html
-  file:
-    path: /var/www/rate-website/index.html
-    state: touch
-    mode: u=rw,g=r,o=r
-
-- name: Copy nginx config file
+- name: Transfer Dockerfile to remote host
   copy:
-    src: config/
-    dest: /etc/nginx/sites-available/
+    src: dockerfile
+    dest: ~/
 
-- name: Create symlink
-  file:
-    src: /etc/nginx/sites-available/rate-website.cfg
-    dest: /etc/nginx/sites-enabled/default
-    state: link
+- name: Build Docker image on remote host
+  command: docker build -t nginxcontainer ~/dockerfile
 
-- name: Restart nginx
-  systemd:
-    name: nginx
-    state: restarted
+- name: Run Docker container on remote host
+  command: docker run -d -p 80:80 -v ~/rate-website/:/usr/share/nginx/html/ nginxcontainer

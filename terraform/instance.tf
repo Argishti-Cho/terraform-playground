@@ -21,10 +21,6 @@ resource "aws_instance" "test-instance" {
     provisioner "local-exec" {
         command = "ssh-keyscan ${aws_instance.test-instance.public_ip} >> ~/.ssh/known_hosts"
     }
-
-    # provisioner "local-exec" {
-    #     command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key} ../ansible/playbook.yaml"    
-    # }
 }
 resource "local_file" "ansible_inventory" {
   content = <<EOF
