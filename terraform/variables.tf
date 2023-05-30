@@ -70,10 +70,8 @@ variable "ssh_user" {
   default     = "ubuntu"
 }
 
-variable "private_key_path" {
-  description = "Path to private key"
+variable "private_key" {
   type        = string
-  default     = "~/.ssh/shtajiryan.pem"
 }
 
 variable "key_pair_name" {

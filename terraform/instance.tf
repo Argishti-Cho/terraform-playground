@@ -13,7 +13,7 @@ resource "aws_instance" "test-instance" {
         connection {
             type = "ssh"
             user = var.ssh_user
-            private_key = file(var.private_key_path)
+            private_key = var.private_key
             host = self.public_ip
         }
     }
@@ -23,7 +23,7 @@ resource "aws_instance" "test-instance" {
     }
 
     provisioner "local-exec" {
-        command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key_path} ../ansible/playbook.yaml"    
+        command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key} ../ansible/playbook.yaml"    
     }
 }
 
