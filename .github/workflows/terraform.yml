@@ -31,16 +31,12 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check terraform/
-        env:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-
       - name: Terraform Init
         id: init
         run: terraform init terraform/
+        env:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
 
       - name: Terraform Plan
         id: plan

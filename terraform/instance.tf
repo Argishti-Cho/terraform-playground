@@ -26,7 +26,3 @@ resource "aws_instance" "test-instance" {
         command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key_path} ../ansible/playbook.yaml"    
     }
 }
-
-output "nginx_ip" {
-    value = aws_instance.test-instance.public_ip
-}
