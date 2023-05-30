@@ -1,7 +1,7 @@
 ---
 - name: Transfer Dockerfile to remote host
   copy:
-    src: dockerfile
+    src: docker/
     dest: ~/
 
 - name: Build Docker image on remote host
