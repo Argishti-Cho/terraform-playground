@@ -11,12 +11,12 @@
 
 - name: Transfer custom cinfig to remote host
   copy:
-    src: ..files/config/
+    src: /config/
     dest: /home/ubuntu/rate-website/config/
 
 - name: Transfer Dockerfile to remote host
   copy:
-    src: ../files/docker/
+    src: /docker/
     dest: /home/ubuntu/
 
 - name: Build Docker image on remote host
