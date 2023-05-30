@@ -13,4 +13,4 @@ bestbuybank=$(cat /tmp/cleaned.html | grep -B 6 $bestbuy | grep -o '^<img align=
 
 rm /tmp/full.html && rm /tmp/cleaned.html && rm /tmp/bestsell.txt && rm /tmp/bestbuy.txt
 
-echo "<meta charset="utf-8"><h1>Best sell rate: ֏$bestsell to $bestsellbank</br>Best buy rate: ֏$bestbuy from $bestbuybank</h1><body><p>as of $(date)</p></body>" > ~/rate-website/index.html
+echo "<meta charset="utf-8"><h1>Best sell rate: ֏$bestsell to $bestsellbank</br>Best buy rate: ֏$bestbuy from $bestbuybank</h1><body><p>as of $(date)</p></body>" > /home/ubuntu/rate-website/index.html
