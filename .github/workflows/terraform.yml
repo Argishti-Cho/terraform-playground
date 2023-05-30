@@ -35,6 +35,9 @@ jobs:
         id: init
         run: terraform -chdir=terraform/ init
 
+      - name: Create SSH Directory
+        run: mkdir -p ~/.ssh
+
       - name: Terraform Plan
         id: plan
         run: terraform -chdir=terraform/ plan
