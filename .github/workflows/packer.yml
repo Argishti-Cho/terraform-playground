@@ -1,9 +1,9 @@
-name: Packer + Ansible
+name: Packer
 
 on:
   push:
     branches:
-      - "dev"
+      - "main"
 
 jobs:
   build-image:
