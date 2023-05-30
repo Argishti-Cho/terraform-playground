@@ -23,4 +23,4 @@
   command: docker build -t nginxcontainer /home/ubuntu/
 
 - name: Run Docker container on remote host
-  command: docker run -d -p 80:80 -v /home/ubuntu/rate-website/:/usr/share/nginx/html/ -v -v /home/ubuntu/rate-website/config:/etc/nginx/conf.d/ nginxcontainer
+  command: docker run -d -p 80:80 -v /home/ubuntu/rate-website/:/usr/share/nginx/html/ -v /home/ubuntu/rate-website/config:/etc/nginx/conf.d/ nginxcontainer
