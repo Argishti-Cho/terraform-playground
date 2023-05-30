@@ -29,5 +29,7 @@ build {
 
   provisioner "ansible" {
     playbook_file = "packer/provisioners/ansible/docker.yml"
-  }
+    user = "ubuntu"
+    ansible_env_vars = [ "ANSIBLE_SSH_ARGS='-o PubkeyAcceptedKeyTypes=+ssh-rsa -o HostkeyAlgorithms=+ssh-rsa'" ]
+    }
 }
