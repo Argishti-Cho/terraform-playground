@@ -44,16 +44,24 @@ jobs:
         id: destroy
         run: terraform -chdir=terraform/ destroy -auto-approve
 
-      - name: Create SSH Directory
-        run: mkdir -p ~/.ssh
-
+        
       - name: Terraform Plan
         id: plan
         run: terraform -chdir=terraform/ plan
-
+        
       - name: Terraform Apply
+        id: apply
         run: terraform -chdir=terraform/ apply -auto-approve
-
+        
+      - name: Create SSH Directory
+        run: mkdir -p ~/.ssh
+      
+      - name: Write private key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+       
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/playbook.yml -i terraform/inventory
         
