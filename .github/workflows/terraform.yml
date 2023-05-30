@@ -2,7 +2,7 @@ name: Terraform + Ansible
 
 on:
   workflow_run:
-    workflows: ["Packer"]
+    workflows: ["Packer + Ansible"]
     types:
       - completed
 
