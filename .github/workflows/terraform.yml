@@ -44,6 +44,8 @@ jobs:
         id: destroy
         run: terraform -chdir=terraform/ destroy -auto-approve
 
+      - name: Create SSH Directory
+        run: mkdir -p ~/.ssh
         
       - name: Terraform Plan
         id: plan
@@ -52,9 +54,6 @@ jobs:
       - name: Terraform Apply
         id: apply
         run: terraform -chdir=terraform/ apply -auto-approve
-        
-      - name: Create SSH Directory
-        run: mkdir -p ~/.ssh
       
       - name: Write private key
         run: |
