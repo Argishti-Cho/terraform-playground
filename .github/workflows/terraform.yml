@@ -1,12 +1,17 @@
 name: Terraform
 
+# on:
+#   workflow_run:
+#     workflows: ["Packer"]
+#     branches:
+#       - "main"
+#     types:
+#       - completed
+
 on:
-  workflow_run:
-    workflows: ["Packer"]
+  push:
     branches:
       - "main"
-    types:
-      - completed
 
 jobs:
   terraform:
