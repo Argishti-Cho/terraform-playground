@@ -1,0 +1,44 @@
+name: Terraform + Ansible
+
+on:
+  workflow_run:
+    workflows: ["Packer"]
+    types:
+      - completed
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-1
+    
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check terraform/
+
+      - name: Terraform Init
+        id: init
+        run: terraform init terraform/
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan terraform/
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+        run: terraform apply -auto-approve terraform/
+        env:
+          tf-var-aws-access: ${{ secrets.AWS_ACCESS_KEY }}
+          tf-var-aws-secret: ${{ secrets.AWS_SECRET_KEY }}
