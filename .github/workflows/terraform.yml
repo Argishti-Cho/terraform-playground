@@ -35,6 +35,10 @@ jobs:
         id: init
         run: terraform -chdir=terraform/ init
 
+      - name: Terraform Destroy
+        id: destroy
+        run: terraform -chdir=terraform/ destroy -auto-approve
+
       - name: Create SSH Directory
         run: mkdir -p ~/.ssh
 
@@ -51,4 +55,14 @@ jobs:
         env:
           TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}
+      
+      - name: Get Instance IP
+        id: instance_ip
+        run: echo "::set-output name=ip::$(terraform -chdir=terraform/ output -raw instance_ip)"
+
+      - name: Run Ansible Playbook
+        run:
+          "ansible-playbook -i ${{ steps.instance_ip.outputs.ip }} --private-key ${var.private_key} ansible/playbook.yaml"
+        env:
           TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}

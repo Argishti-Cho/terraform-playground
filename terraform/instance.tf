@@ -22,11 +22,11 @@ resource "aws_instance" "test-instance" {
         command = "ssh-keyscan ${aws_instance.test-instance.public_ip} >> ~/.ssh/known_hosts"
     }
 
-    provisioner "local-exec" {
-        command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key} ../ansible/playbook.yaml"    
-    }
+    # provisioner "local-exec" {
+    #     command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key} ../ansible/playbook.yaml"    
+    # }
 }
 
-output "nginx_ip" {
+output "instance_ip" {
     value = aws_instance.test-instance.public_ip
 }
