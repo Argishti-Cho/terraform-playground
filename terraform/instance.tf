@@ -26,7 +26,11 @@ resource "aws_instance" "test-instance" {
     #     command = "ansible-playbook -i ${aws_instance.test-instance.public_ip}, --private-key ${var.private_key} ../ansible/playbook.yaml"    
     # }
 }
+resource "local_file" "ansible_inventory" {
+  content = <<EOF
+[webserver]
+${aws_instance.test-instance.public_ip}
+EOF
 
-output "instance_ip" {
-    value = aws_instance.test-instance.public_ip
+  filename = "${path.module}/inventory"
 }
