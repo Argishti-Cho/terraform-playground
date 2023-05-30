@@ -1,6 +1,6 @@
 
 resource "aws_instance" "test-instance" {
-    ami = "$(data.aws_ami.ubuntu-docker.id}"
+    ami = "$(data.aws_ami.ubuntu-docker.id)"
     key_name = var.key_pair_name
     instance_type = var.instance_type
     subnet_id = aws_subnet.test_subnet.id
