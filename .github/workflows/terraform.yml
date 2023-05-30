@@ -33,15 +33,14 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform -chdir=/terraform init
+        run: terraform -chdir=terraform/ init
         env:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
 
       - name: Terraform Plan
         id: plan
-        run: terraform -chdir=/terraform plan
+        run: terraform -chdir=terraform/ plan
 
       - name: Terraform Apply
-        run: terraform -chdir=/terraform apply -auto-approve
-        
+        run: terraform -chdir=terraform/ apply -auto-approve
