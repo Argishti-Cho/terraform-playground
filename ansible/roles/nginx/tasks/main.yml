@@ -1,4 +1,19 @@
 ---
+- name: Create website directory on host
+  file:
+    path: /home/ubuntu/rate-website
+    state: directory
+
+- name: Create empty index.html
+  file:
+    path: /home/ubuntu/rate-website/index.html
+    state: touch
+
+- name: Transfer custom cinfig to remote host
+  copy:
+    src: ..files/config/
+    dest: /home/ubuntu/rate-website/config/
+
 - name: Transfer Dockerfile to remote host
   copy:
     src: ../files/docker/
@@ -8,4 +23,4 @@
   command: docker build -t nginxcontainer /home/ubuntu/
 
 - name: Run Docker container on remote host
-  command: docker run -d -p 80:80 -v ~/rate-website/:/usr/share/nginx/html/ nginxcontainer
+  command: docker run -d -p 80:80 -v /home/ubuntu/rate-website/:/usr/share/nginx/html/ -v -v /home/ubuntu/rate-website/config:/etc/nginx/conf.d/ nginxcontainer
