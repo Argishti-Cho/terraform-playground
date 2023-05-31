@@ -11,9 +11,9 @@
   file:
     path: /home/ubuntu/rate-website/index.html
     state: touch
-    owner: ubuntu
-    group: ubuntu
-    mode: u+rw,g-wx,o-rwx
+    # owner: ubuntu
+    # group: ubuntu
+    # mode: u+rw,g-wx,o-rwx
 
 # - name: Transfer custom config to remote host
 #   copy:
@@ -24,9 +24,9 @@
   copy:
     src: docker/
     dest: /home/ubuntu/
-    owner: ubuntu
-    group: ubuntu
-    mode: u+rw,g-wx,o-rwx
+    # owner: ubuntu
+    # group: ubuntu
+    # mode: u+rw,g-wx,o-rwx
 
 
 - name: Build Nginx Docker image
@@ -34,7 +34,7 @@
     name: nginx-docker-image
     source: build
     build:
-      path: /home/ubuntu/dockerfile
+      path: /home/ubuntu
     state: present
 
 - name: Run Nginx Docker Container
