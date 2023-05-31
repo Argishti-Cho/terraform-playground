@@ -11,10 +11,9 @@ on:
     branches:
       - "main"
     paths:
-      - '.github/terraform.yml'
+      - '.github/**'
       - 'ansible/**'
       - 'terraform/**'
-#???
 
 env:
   TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
