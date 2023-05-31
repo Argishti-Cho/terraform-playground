@@ -14,9 +14,6 @@ on:
       - '.github/workflows/terraform.yml'
       - 'ansible/**'
       - 'terraform/**'
-    paths-ignore:
-      - 'README.md'
-      - '.gitignore'
 
 env:
   TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
