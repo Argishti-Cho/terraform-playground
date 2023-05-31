@@ -23,6 +23,7 @@
   docker_image:
     path: /home/ubuntu/dockerfile
     name: nginx-docker-image
+    source: build
     state: present
 
 - name: Run Nginx Docker Container
