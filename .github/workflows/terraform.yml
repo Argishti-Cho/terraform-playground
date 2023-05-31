@@ -19,32 +19,10 @@ env:
   TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}
 
 jobs:
-  check_changes:
-    runs-on: ubuntu-latest
-    outputs:
-      changed: ${{ steps.check.outputs.changed }}
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - id: check
-        name: Check for changes outside of packer directory
-        if: github.event_name == 'push'
-        run: |
-          git diff HEAD^ HEAD -- . ':!packer'
-          git diff --quiet HEAD^ HEAD -- . ':!packer'
-          echo "::set-output name=changed::$?"
   terraform:
-    needs: check_changes
-    if: needs.check_changes.outputs.changed == '1' || github.event_name == 'workflow_run'
     name: Terraform
     runs-on: ubuntu-latest
     steps:
-      - name: Print variables
-        run: |
-          echo "changed: ${{ needs.check_changes.outputs.changed }}"
-          echo "event_name: ${{ github.event_name }}"
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Configure AWS Credentials
