@@ -1,22 +1,19 @@
-# terraform-playground
+# Terraform Playground
 
-This repository uses a 'Packer' Github Actions to create an AWS EC2 AMI with Docker built-in.
-After successful completion of Packer workflow, 'Terraform' workflow is triggered, which creates an AWS EC2 instance based on the newly created custom AMI.
-'Packer' workflow is triggered on a push event on the repository with changes made either to Packer directory or Packer workflow.
-'Terraform' workflow is triggered on push event on the repository with changes made to Ansible, Terraform directories or Terraform workflow.
+This repository uses a Packer GitHub Action to create a custom AWS EC2 AMI with Docker pre-installed. After the Packer workflow completes successfully, a Terraform workflow is triggered to create an AWS EC2 instance using the new custom AMI.
 
-You should have Github Secrets on your repository, containing 'AWS_ACCESS_KEY', 'AWS_SECRET_KEY' and 'PRIVATE_KEY'.
-Both Packer and Terraform use Ansible to provision the newly created image/instance.
+The Packer workflow is triggered by a push event to the repository that includes changes to the Packer directory or workflow. The Terraform workflow is triggered by a push event that includes changes to the Ansible or Terraform directories or workflow.
 
-You should also modify 'terraform/variables.tf' file to fit your needs.
-The file includes the following variables that need to be set, according to your needs.
+Make sure to have the 'AWS_ACCESS_KEY', 'AWS_SECRET_KEY', and 'PRIVATE_KEY' set as GitHub Secrets in your repository. Both Packer and Terraform use Ansible for provisioning.
 
-"AWS Region"
-"VPC CIDR block"
-"subnet_cidr_block"
-"availability_zone"
-"route_table_cidr_block"
-"instance_type"
-"ami_id"
-"ssh_user"
-"key_pair_name"
+You should also modify the `terraform/variables.tf` file to fit your needs. The file includes the following variables that need to be set according to your needs:
+
+- AWS Region
+- VPC CIDR block
+- subnet_cidr_block
+- availability_zone
+- route_table_cidr_block
+- instance_type
+- ami_id
+- ssh_user
+- key_pair_name
