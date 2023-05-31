@@ -32,6 +32,7 @@ jobs:
         name: Check for changes outside of packer directory
         if: github.event_name == 'push'
         run: |
+          git diff HEAD^ HEAD -- . ':!packer'
           git diff --quiet HEAD^ HEAD -- . ':!packer'
           echo "::set-output name=changed::$?"
   terraform:
