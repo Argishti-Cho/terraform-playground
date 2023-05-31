@@ -7,6 +7,9 @@ on:
     paths:
       - '.github/workflows/packer.yml'
       - 'packer/**'
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
 
 jobs:
   build-image:
