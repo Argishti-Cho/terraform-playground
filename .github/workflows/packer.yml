@@ -3,7 +3,9 @@ name: Packer
 on:
   push:
     branches:
-      - "dev"
+      - "main"
+    paths:
+      - 'packer/**'
 
 jobs:
   build-image:

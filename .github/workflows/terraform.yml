@@ -1,17 +1,22 @@
 name: Terraform
 
-# on:
-#   workflow_run:
-#     workflows: ["Packer"]
-#     branches:
-#       - "main"
-#     types:
-#       - completed
-
 on:
+  workflow_run:
+    workflows: ["Packer"]
+    branches:
+      - "main"
+    types:
+      - completed
   push:
     branches:
       - "main"
+    paths-ignore:
+      - 'packer/**'
+
+# on:
+#   push:
+#     branches:
+#       - "main"
 
 env:
   TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
