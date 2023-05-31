@@ -10,8 +10,10 @@ on:
   push:
     branches:
       - "main"
-    paths-ignore:
-      - 'packer/**'
+    paths:
+      - '.github/**'
+      - 'ansible/**'
+      - 'terraform/**'
 
 env:
   TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
