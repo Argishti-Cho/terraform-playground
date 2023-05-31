@@ -15,19 +15,10 @@
     group: ubuntu
     mode: 0644
 
-# - name: Transfer custom config to remote host
-#   copy:
-#     src: config/
-#     dest: /home/ubuntu/rate-website/config/
-
 - name: Transfer Dockerfile to remote host
   copy:
     src: docker/
     dest: /home/ubuntu/
-    # owner: ubuntu
-    # group: ubuntu
-    # mode: u+rw,g-wx,o-rwx
-
 
 - name: Build Nginx Docker image
   docker_image:
@@ -46,9 +37,3 @@
       - "80:80"
     volumes:
       - /home/ubuntu/rate-website/:/usr/share/nginx/html/
-
-# - name: Build Docker image on remote host
-#   command: docker build -t nginxcontainer /home/ubuntu/
-
-# - name: Run Docker container on remote host
-#   command: docker run -d -p 80:80 -v /home/ubuntu/rate-website/:/usr/share/nginx/html/ nginxcontainer
