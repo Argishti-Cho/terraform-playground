@@ -5,15 +5,15 @@
     state: directory
     owner: ubuntu
     group: ubuntu
-    mode: u+rw,g-wx,o-rwx
+    mode: 0755
 
 - name: Create empty index.html
   file:
     path: /home/ubuntu/rate-website/index.html
     state: touch
-    # owner: ubuntu
-    # group: ubuntu
-    # mode: u+rw,g-wx,o-rwx
+    owner: ubuntu
+    group: ubuntu
+    mode: 0644
 
 # - name: Transfer custom config to remote host
 #   copy:
