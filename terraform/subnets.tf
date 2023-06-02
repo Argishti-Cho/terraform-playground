@@ -1,9 +1,9 @@
-resource "aws_subnet" "test_subnet" {
-    vpc_id = aws_vpc.test_vpc.id
+resource "aws_subnet" "rate-website_subnet" {
+    vpc_id = aws_vpc.rate-website_vpc.id
     cidr_block = var.subnet_cidr_block
     availability_zone = var.availability_zone
     tags = {
-        Name = "Test Subnet"
+        Name = "rate-website Subnet"
         DeleteMe = "Yes"
     }
 }

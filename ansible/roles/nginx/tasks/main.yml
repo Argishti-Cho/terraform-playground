@@ -1,4 +1,11 @@
 ---
+- name: Create docker directory on host
+  file:
+    path: /home/ubuntu/docker
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
 - name: Create website directory on host
   file:
     path: /home/ubuntu/rate-website
@@ -15,25 +22,11 @@
     group: ubuntu
     mode: 0644
 
-- name: Transfer Dockerfile to remote host
+- name: Transfer Dockerfiles and docker-compose.yml to remote host
   copy:
     src: docker/
-    dest: /home/ubuntu/
+    dest: /home/ubuntu/docker/
 
-- name: Build Nginx Docker image
-  docker_image:
-    name: nginx-docker-image
-    source: build
-    build:
-      path: /home/ubuntu
-    state: present
-
-- name: Run Nginx Docker Container
-  docker_container:
-    name: nginx-docker-container
-    image: nginx-docker-image
-    state: started
-    ports:
-      - "80:80"
-    volumes:
-      - /home/ubuntu/rate-website/:/usr/share/nginx/html/
+- name: Start Docker Compose services
+  docker_compose:
+    project_src: /home/ubuntu/docker/

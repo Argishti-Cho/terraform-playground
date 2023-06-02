@@ -1,7 +1,7 @@
-resource "aws_security_group" "test_security_group" {
+resource "aws_security_group" "rate-website_security_group" {
     name = "Allow SSH, 80, 443"
     description = "Allow SSH, 80, 443 connections"
-    vpc_id = aws_vpc.test_vpc.id
+    vpc_id = aws_vpc.rate-website_vpc.id
     ingress {
         from_port = 22
         to_port = 22
