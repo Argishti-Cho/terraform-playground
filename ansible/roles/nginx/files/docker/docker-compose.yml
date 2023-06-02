@@ -4,12 +4,14 @@ services:
     build:
       context: .
       dockerfile: proxy.Dockerfile
+    container_name: nginx-proxy
     ports:
       - "80:80"
   backend:
     build:
       context: .
       dockerfile: backend.Dockerfile
+    container_name: nginx-backend
     depends_on:
       - redis
     volumes:
