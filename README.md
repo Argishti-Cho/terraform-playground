@@ -18,4 +18,4 @@ You should also modify the `terraform/variables.tf` file to fit your needs. The 
 - ssh_user
 - key_pair_name
 
-The last step of Terraform workflow runs an Ansible provisioner, which runs docker-compose on the instance, creating an nginx backend container, an nginx proxy container and a reddis container just as a sample requirement.
+The last step of Terraform workflow runs an Ansible provisioner, which runs docker-compose on the instance, creating an nginx backend container hosting an simple website which shows best USD-AMD conversion rates updated every 30 seconds, an nginx proxy container which redirects all traffic, be it http or https to the backend nginx container and a reddis container just as a sample requirement.
