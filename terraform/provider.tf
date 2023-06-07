@@ -7,8 +7,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "shahe-terraform-state-bucket"
-    key = "state/terraform.tfstate"
+    bucket = "shtajiryan-devops-bucket"
+    key = "terraform-state/terraform.tfstate"
     region = "us-east-1"
   }
 }
