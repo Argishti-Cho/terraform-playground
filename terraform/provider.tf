@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "shtajiryan-devops-bucket"
+    bucket = "achulakyan.devopsaca.site"
     key = "terraform-state/terraform.tfstate"
     region = "us-east-1"
   }

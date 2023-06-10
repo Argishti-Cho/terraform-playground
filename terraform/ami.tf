@@ -3,6 +3,6 @@ data "aws_ami" "ubuntu-docker" {
 
   owners = ["self"]
   tags = {
-    Name   = "RateImage"
+    Name   = "CustomImage"
   }
 }
