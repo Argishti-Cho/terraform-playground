@@ -17,8 +17,8 @@ source "amazon-ebs" "ubuntu-lts" {
   ami_regions = ["us-east-1"]
 
   tags = {
-    name = "RateImage"
-    owner = "shtajiryan"
+    name = "CustomImage"
+    owner = "acholakyan"
   }
 }
 
