@@ -77,5 +77,5 @@ variable "private_key" {
 variable "key_pair_name" {
   description = "AWS EC2 key-pair name"
   type        = string
-  default     = "shtajiryan"
+  default     = "aca-test-account"
 }
